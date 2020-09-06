@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+    <ul>
+        <% data.forEach(book=>{ %>
+            <li><img src=<%=book.image%> alt="image"></li>
+            <li><h3>Title: <%=book.title%></h3></li>
+            <li><h4>Author: <%=book.author%></h4></li>
+            <li><p>Description: <%=book.description%></p></li>
+            <li><strong> Published Date: <%=book.date%></strong></li>
+            <button type="submit" id='submitTheBook'>slecet this book</button>
+        <% }) %>
+    </ul>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+</html>
