@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="modules.css">
-    <link rel="stylesheet" href="layout.css">
+   
 </head>
 
 <body>
@@ -18,18 +15,15 @@
         <a href="/searches/new">search</a>
     </header>
     <main>
-        <form>
             <ul>
-                <% data.forEach(book=>{ %>
-                    <li><img src=<%=book.image%> alt="image"></li>
-                    <li><h3>Title: <%=book.title%></h3></li>
-                    <li><h4>Author: <%=book.author%></h4></li>
-                    <li><h4> ISBN : <%=book.isbn%></h4></li>
-                    <li><p>Description: <%=book.description%></p></li>
-                    <li><strong> Published Date: <%=book.date%></strong></li>
-                <% }) %>
+                    <li><img src=<%=detailedBook.image_url%> ></li>
+                    <li><h3>Title: <%=detailedBook.title%></h3></li>
+                    <li><h4>Author: <%=detailedBook.author%></h4></li>
+                    <li><h4> ISBN : <%=detailedBook.isbn%></h4></li>
+                    <li><p>Description: <%=detailedBook.description%></p></li>
+                    <li><strong> Published Date: <%=detailedBook.date%></strong></li>
             </ul>
-    </form>
+    
     </main>
 </body>
 

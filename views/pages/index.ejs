@@ -14,7 +14,6 @@
     <header>
         <h1>Hello wolrd !!</h1>
         <a href="/searches/new">search</a>
-        <a href="/books/<%=id%>">detailed</a>
     </header>
     <main>
         <form>
@@ -32,11 +31,13 @@
             <li>
                 <h4>Author: <%=book.author%></h4>
             </li>
-            <!-- <li><h4> ISBN : <%=book.isbn%></h4></li>
-                <li><p>Description: <%=book.description%></p></li> -->
             <input type="hidden" value='`ISBN : <%=book.isbn%>`'> <br><br>
-            <input type="hidden" value='`Description: <%=book.description%>`'</p><br><br>
-            <button type="submit" id='submitTheBook'>View Details</button> 
+            <input type="hidden" value='`Description: <%=book.description%>`'><br><br>
+            <form action="/books/<%=book.id%>" method="GET">
+                <input type="submit" value="View Details">
+            </form>
+
+
             <% }) %>
         </ul>
     </form>

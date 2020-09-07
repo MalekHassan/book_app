@@ -37,6 +37,7 @@ app.get('/searches/new',(req,res)=>{
     // console.log(req.query);
     res.render('pages/searches/new');
 })
+let bookarr=[]
  app.post('/searches/show',getData)
   function getData(req,res){
     //  let bookArray=[];
@@ -57,7 +58,9 @@ app.get('/searches/new',(req,res)=>{
         // let counter = 0;
         let bookdata = item.body.items.map(element => {
             //  counter++;
-            return  new Book (element);
+             let bookobj = new Book (element);
+bookarr.push(bookobj);
+return bookobj;
             // console.log('data',data)
             // bookArray.push(data)
             
@@ -71,7 +74,31 @@ app.get('/searches/new',(req,res)=>{
    .catch(()=>{
     errorHandler('something went wrong in getting the data',req,res)
 })
-  }
+}
+
+app.post('/books', addBook); // adds a book into all
+function addBook(req, res) {
+  let SQL = `INSERT INTO selectedBooks (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+  let values = [req.body.title, req.body.author, req.body.isbn, req.body.image_url, req.body.description];
+  
+  client.query(SQL, values)
+    .then(result => {
+      res.redirect(`/books/${result.rows[0].id}`);
+  });
+}
+// app.post('/savedbooks',saveRout);
+//  function saveRout(req,res){
+//   let SQL = `SELECT * FROM books WHERE id=$1`;
+//   // console.log(req.params);
+//   let book_id = req.params.id;
+//   let values = [book_id];
+//   client.query(SQL,values)
+//   .then(results=>{
+//     // console.log(results.rows);
+//     res.render('pages/books/details',{detailedBook: results.rows[0]});  
+//   })
+// }
+
   function saveToDataBase(bookdata){
       let SQL = `INSERT INTO books ( image_url , title, author, isbn , description) VALUES ($1,$2,$3,$4,$5);`;
       bookdata.map(item =>{
@@ -82,6 +109,7 @@ app.get('/searches/new',(req,res)=>{
             console.log('we are in data base')
         })
       })
+      
      
   }
   app.get('/books/:id',viewDetailsBook);
@@ -94,8 +122,7 @@ app.get('/searches/new',(req,res)=>{
     client.query(SQL,values)
     .then(results=>{
       // console.log(results.rows);
-      res.render('pages/books/details',{detailedBook: results.rows[0]});
-  
+      res.render('pages/books/details',{detailedBook: results.rows[0]});  
     })
   }
 function Book(element){

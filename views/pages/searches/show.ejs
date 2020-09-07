@@ -17,6 +17,7 @@
         <a href="/searches/new">search</a>
     </header>
     <main>
+        <form action="/book" method="POST">
     <ul>
         <% data.forEach(book=>{ %>
             <li><img src=<%=book.image%> alt="image"></li>
@@ -25,9 +26,25 @@
             <li><h4> ISBN : <%=book.isbn%></h4></li>
             <li><p>Description: <%=book.description%></p></li>
             <li><strong> Published Date: <%=book.date%></strong></li>
-            <button type="submit" id='submitTheBook'>slecet this book</button>
-        <% }) %>
+            <form action="/save/<%=book.id%>" method="GET">
+                <input type="submit" value="select this book">
+            </form>
+      
+
+        <form action="/books" method="POST">
+            <input type="hidden" name="image_url" id="image_url" value='<%= book.image_url %>'>
+            <input type="hidden" name="title" id="title" value='<%= book.title %>'>
+            <input type="hidden" name="author" id="author" value='<%= book.author %>'>
+            <input type="hidden" name="description" id="description" value='<%= book.description %>'>
+            <input type="hidden" name="isbn" id="isbn" value='<%= book.isbn %>'>
+            <button type="submit">Add to Collection</button>
+          </form>
+        </li>
+     <% }) %>
+
     </ul>
+    <input type="submit" value="Submit all selected books">
+</form>
 </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
