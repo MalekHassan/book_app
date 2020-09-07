@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,36 @@
     <link rel="stylesheet" href="layout.css">
 </head>
 <body>
-    <header> 
+    <header>
         <h1>Hello wolrd !!</h1>
         <a href="/searches/new">search</a>
+        <a href="/books/<%=id%>">detailed</a>
     </header>
-    
+    <main>
+        <form>
+        <ul>
+            <%let counter = 0%>
+            <% banana.forEach(book=>{ %>
+                <%counter++%>
+                <li>
+                    <h3>Numbeer of books in database:<%- counter %> </h3>
+                </li>
+            <li><img src=<%=book.image_url%> alt="image"></li>
+            <li>
+                <h3>Title: <%=book.title%></h3>
+            </li>
+            <li>
+                <h4>Author: <%=book.author%></h4>
+            </li>
+            <!-- <li><h4> ISBN : <%=book.isbn%></h4></li>
+                <li><p>Description: <%=book.description%></p></li> -->
+            <input type="hidden" value='`ISBN : <%=book.isbn%>`'> <br><br>
+            <input type="hidden" value='`Description: <%=book.description%>`'</p><br><br>
+            <button type="submit" id='submitTheBook'>View Details</button> 
+            <% }) %>
+        </ul>
+    </form>
+    </main>
 </body>
+
 </html>

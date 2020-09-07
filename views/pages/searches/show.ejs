@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="modules.css">
     <link rel="stylesheet" href="layout.css">
 </head>
+
 <body>
+    <header>
+        <h1>Hello wolrd !!</h1>
+        <a href="/">home</a>
+        <a href="/searches/new">search</a>
+    </header>
+    <main>
     <ul>
         <% data.forEach(book=>{ %>
             <li><img src=<%=book.image%> alt="image"></li>
@@ -21,7 +28,7 @@
             <button type="submit" id='submitTheBook'>slecet this book</button>
         <% }) %>
     </ul>
-    
+</main>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
