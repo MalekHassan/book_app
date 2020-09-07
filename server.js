@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(cors());
 app.use(express.static('./public'));
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 // app.set('views', './views/pages');
 app.set('view engine','ejs');
 
@@ -33,7 +33,9 @@ app.get('/searches/new',(req,res)=>{
      console.log('hi type',bookType)
     //  let check = checking(bookName,bookType)
      if (bookType === 'author'){
-   let url=`https://www.googleapis.com/books/v1/volumes?q=${bookName}+inauthor`;
+   var url=`https://www.googleapis.com/books/v1/volumes?q=+inauthor:${bookName}`
+}else{
+    var url=`https://www.googleapis.com/books/v1/volumes?q=+intitle:${bookName}`}
 //    console.log('URL: ',url);
 //    console.log('superagent', await superagent.get(url));
      superagent.get(url).then (item=>{
@@ -49,32 +51,15 @@ app.get('/searches/new',(req,res)=>{
    .catch(()=>{
     errorHandler('something went wrong in getting the data',req,res)
 })
-
-     }else{
-        let url=`https://www.googleapis.com/books/v1/volumes?q=${bookName}+intitle`;
-        // console.log('URL title :  ',url);
-        // console.log('superagent', await superagent.get(url));
-          superagent.get(url).then (item=>{
-            // console.log(item);
-            // console.log(item.body);
-            let bookdata = item.body.items.map(element => {
-                return  new Book (element);
-                // console.log('data',data)
-                // bookArray.push(data)
-            });
-           console.log(bookdata);
-           res.render('pages/searches/show',{data:bookdata});
-     })     
-     .catch(()=>{
-        errorHandler('something went wrong in getting the data',req,res)
-    })
-}
-};
+  }
 
 function Book(element){
     this.image = element.volumeInfo.imageLinks.thumbnail || "https://i.imgur.com/J5LVHEL.jpg"
     this.title=element.volumeInfo.title 
     this.author=element.volumeInfo.authors || "There is no authors"
+    this.isbn = (element.volumeInfo.industryIdentifiers && element.volumeInfo.industryIdentifiers[0].type +" " + 
+    element.volumeInfo.industryIdentifiers[0].identifier) ||
+        "There is no isbn "
     this.description=element.volumeInfo.description || "There is no description"
     this.date=element.volumeInfo.publishedDate || "There is no description"
 
