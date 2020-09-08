@@ -16,7 +16,7 @@
         <a href="/searches/new">search</a>
     </header>
     <main>
-        <form>
+        <div>
         <ul>
             <%let counter = 0%>
             <% banana.forEach(book=>{ %>
@@ -31,17 +31,12 @@
             <li>
                 <h4>Author: <%=book.author%></h4>
             </li>
-            <input type="hidden" value='`ISBN : <%=book.isbn%>`'> <br><br>
-            <input type="hidden" value='`Description: <%=book.description%>`'><br><br>
             <form action="/books/<%=book.id%>" method="GET">
                 <input type="submit" value="View Details">
             </form>
-
-
             <% }) %>
         </ul>
-    </form>
+        </div>
     </main>
 </body>
-
 </html>

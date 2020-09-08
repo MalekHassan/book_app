@@ -17,7 +17,7 @@
         <a href="/searches/new">search</a>
     </header>
     <main>
-        <form action="/book" method="POST">
+        <form action="/showadd" method="POST">
     <ul>
         <% data.forEach(book=>{ %>
             <li><img src=<%=book.image_url%> alt="image"></li>
@@ -26,12 +26,7 @@
             <li><h4> ISBN : <%=book.isbn%></h4></li>
             <li><p>Description: <%=book.description%></p></li>
             <li><strong> Published Date: <%=book.date%></strong></li>
-            <form action="/save/<%=book.id%>" method="GET">
-                <input type="submit" value="select this book">
-            </form>
-      
-
-        <form action="/showadd" method="POST">
+            <form action="/showadd" method="POST">
             <input type="hidden" name="image_url" id="image_url" value='<%= book.image_url %>'>
             <input type="hidden" name="title" id="title" value='<%= book.title %>'>
             <input type="hidden" name="author" id="author" value='<%= book.author %>'>
