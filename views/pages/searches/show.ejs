@@ -20,7 +20,7 @@
         <form action="/book" method="POST">
     <ul>
         <% data.forEach(book=>{ %>
-            <li><img src=<%=book.image%> alt="image"></li>
+            <li><img src=<%=book.image_url%> alt="image"></li>
             <li><h3>Title: <%=book.title%></h3></li>
             <li><h4>Author: <%=book.author%></h4></li>
             <li><h4> ISBN : <%=book.isbn%></h4></li>
@@ -31,7 +31,7 @@
             </form>
       
 
-        <form action="/books" method="POST">
+        <form action="/showadd" method="POST">
             <input type="hidden" name="image_url" id="image_url" value='<%= book.image_url %>'>
             <input type="hidden" name="title" id="title" value='<%= book.title %>'>
             <input type="hidden" name="author" id="author" value='<%= book.author %>'>

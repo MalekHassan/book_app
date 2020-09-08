@@ -67,7 +67,7 @@ return bookobj;
         });
               
 
-        saveToDataBase(bookdata);
+        // saveToDataBase(bookdata);
     //    console.log(item.body);
        res.render('pages/searches/show',{data:bookdata});
    })
@@ -98,35 +98,33 @@ function addBook(req, res) {
 //     res.render('pages/books/details',{detailedBook: results.rows[0]});  
 //   })
 // }
-
-  function saveToDataBase(bookdata){
+app.post('/showadd',saveToDataBase)
+function saveToDataBase(req , res){
+    let {image_url , title, author, isbn , description} = req.body
       let SQL = `INSERT INTO books ( image_url , title, author, isbn , description) VALUES ($1,$2,$3,$4,$5);`;
-      bookdata.map(item =>{
-        let safeValue = [ item.image , item.title, item.author, item.isbn , item.description];
-        console.log(item.image );
+        let safeValue = [ image_url , title, author, isbn , description];
         client.query(SQL,safeValue).then(()=>{
-          // value.redirect('/');
-            console.log('we are in data base')
+          console.log('we are in data base',req.body)
+          res.redirect('/')
         })
-      })
       
      
   }
   app.get('/books/:id',viewDetailsBook);
-
   function viewDetailsBook(req,res) {
     let SQL = `SELECT * FROM books WHERE id=$1`;
     // console.log(req.params);
     let book_id = req.params.id;
     let values = [book_id];
+    // saveToDataBase(SQL.rows[0]);
     client.query(SQL,values)
     .then(results=>{
-      // console.log(results.rows);
-      res.render('pages/books/details',{detailedBook: results.rows[0]});  
+      // console.log(results.rows); 
+      res.render('pages/books/details',{detailedBook: results.rows[0]}); 
     })
   }
 function Book(element){
-    this.image = element.volumeInfo.imageLinks.thumbnail || "https://i.imgur.com/J5LVHEL.jpg"
+    this.image_url = element.volumeInfo.imageLinks.thumbnail || "https://i.imgur.com/J5LVHEL.jpg"
     this.title=element.volumeInfo.title 
     this.author=element.volumeInfo.authors || "There is no authors"
     this.isbn = (element.volumeInfo.industryIdentifiers && element.volumeInfo.industryIdentifiers[0].type +" " + 
