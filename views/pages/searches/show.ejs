@@ -2,20 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="modules.css">
-    <link rel="stylesheet" href="layout.css">
+    <%- include('../template/head')-%>
 </head>
 
 <body>
-    <header>
-        <h1>Hello wolrd !!</h1>
-        <a href="/">home</a>
-        <a href="/searches/new">search</a>
-    </header>
+    <%- include('../template/header')-%>
+
     <main>
         <form action="/showadd" method="POST">
     <ul>
