@@ -19,8 +19,6 @@ app.set('view engine','ejs');
 app.use(methodOverride('_method'));
 
 app.get('/', bookSet);
-
-
 async function bookSet(req,res){
     let dataBase = await getBookData()
     res.render('pages/index', { banana:dataBase});
@@ -126,8 +124,8 @@ function saveToDataBase(req , res){
           res.redirect(`/books/${req.params.id}`)
         })   
   }
-  app.delete('/delete/:id',updateBook);
-  function updateBook(req,res){
+  app.delete('/delete/:id',deletebook);
+  function deletebook(req,res){
     console.log('we are deleting');
       let SQL = `DELETE from books WHERE id=$1;`;
         let safeValue = [ req.params.id];
