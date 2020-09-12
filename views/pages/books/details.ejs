@@ -3,18 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
+    <%- include('../template/head')-%>
 </head>
 
 <body>
-    <header>
-        <h1>Hello wolrd !!</h1>
-        <a href="/">home</a>
-        <a href="/searches/new">search</a>
-    </header>
+    <%- include('../template/header')-%>
     <main>
+        <div>
             <ul>
                     <li><img src=<%=detailedBook.image_url%> ></li>
                     <li><h3>Title: <%=detailedBook.title%></h3></li>
@@ -23,6 +18,7 @@
                     <li><p>Description: <%=detailedBook.description%></p></li>
                     <li><strong> Published Date: <%=detailedBook.date%></strong></li>
             </ul>
+        </div>
             <button id='buttonUpdate'>update</button>
             <form action="/delete/<%=detailedBook.id%>?_method=delete" method="post">
                 <input type="submit" value="delete">
@@ -35,7 +31,8 @@
             <input type="text" name='description'value='<%=detailedBook.description%>'><br><br>
             <input type="submit" value="update">
             </form>
-            </section>    
+            </section>
+        </div>    
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
@@ -43,6 +40,14 @@
         $("#buttonUpdate").click(function(){
             $('#updateForm').toggle()
         });
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
         </script>
 </body>
 

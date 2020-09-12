@@ -91,11 +91,11 @@ function addBook(req, res) {
 app.post('/showadd',saveToDataBase)
 function saveToDataBase(req , res){
     let {image_url , title, author, isbn , description} = req.body
-    console.log();
+    // console.log('/showadd');
       let SQL = `INSERT INTO books ( image_url , title, author, isbn , description) VALUES ($1,$2,$3,$4,$5);`;
         let safeValue = [ image_url , title, author, isbn , description];
         client.query(SQL,safeValue).then(()=>{
-          // console.log('we are in data base',req.body)
+          console.log('we are in data base',req.body)
           res.redirect('/')
         })   
   }
