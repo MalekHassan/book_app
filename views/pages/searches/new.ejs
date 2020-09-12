@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="modules.css">
-    <link rel="stylesheet" href="layout.css">
-</head>
+
+
+    <%- include('../template/head')-%>
+
 <body>
+    <main>
+          <%- include('../template/header')-%>
     <form action="/searches/show" method="POST" >
         <fieldset>
             <input type="text" id="search" name="stringType" placeholder="Enter a title or an author" />
@@ -25,5 +21,6 @@
         </fieldset>
         <input type="submit" value="Search the Google Books API" />
     </form>
+</main>
 </body>
 </html>

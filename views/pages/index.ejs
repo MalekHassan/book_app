@@ -3,20 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="modules.css">
-    <link rel="stylesheet" href="layout.css">
+    <%- include('./template/head')-%>
 </head>
 <body>
-    <header>
-        <h1>Hello wolrd !!</h1>
-        <a href="/searches/new">search</a>
-    </header>
+    <%- include('./template/header')-%>
     <main>
-        <form>
+        <div>
         <ul>
             <%let counter = 0%>
             <% banana.forEach(book=>{ %>
@@ -31,17 +23,22 @@
             <li>
                 <h4>Author: <%=book.author%></h4>
             </li>
-            <input type="hidden" value='`ISBN : <%=book.isbn%>`'> <br><br>
-            <input type="hidden" value='`Description: <%=book.description%>`'><br><br>
             <form action="/books/<%=book.id%>" method="GET">
                 <input type="submit" value="View Details">
             </form>
-
-
             <% }) %>
         </ul>
-    </form>
+        </div>
     </main>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
 </body>
-
 </html>

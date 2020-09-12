@@ -9,13 +9,14 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const pg = require("pg");
 const client = new pg.Client(process.env.DATABASE_URL);
-
+const methodOverride = require('method-override');
 
 app.use(cors());
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
 // app.set('views', './views/pages');
 app.set('view engine','ejs');
+app.use(methodOverride('_method'));
 
 app.get('/', bookSet);
 
@@ -86,32 +87,21 @@ function addBook(req, res) {
       res.redirect(`/books/${result.rows[0].id}`);
   });
 }
-// app.post('/savedbooks',saveRout);
-//  function saveRout(req,res){
-//   let SQL = `SELECT * FROM books WHERE id=$1`;
-//   // console.log(req.params);
-//   let book_id = req.params.id;
-//   let values = [book_id];
-//   client.query(SQL,values)
-//   .then(results=>{
-//     // console.log(results.rows);
-//     res.render('pages/books/details',{detailedBook: results.rows[0]});  
-//   })
-// }
+
 app.post('/showadd',saveToDataBase)
 function saveToDataBase(req , res){
     let {image_url , title, author, isbn , description} = req.body
+    // console.log('/showadd');
       let SQL = `INSERT INTO books ( image_url , title, author, isbn , description) VALUES ($1,$2,$3,$4,$5);`;
         let safeValue = [ image_url , title, author, isbn , description];
         client.query(SQL,safeValue).then(()=>{
           console.log('we are in data base',req.body)
           res.redirect('/')
-        })
-      
-     
+        })   
   }
   app.get('/books/:id',viewDetailsBook);
   function viewDetailsBook(req,res) {
+    console.log("book_id", req.params.id);
     let SQL = `SELECT * FROM books WHERE id=$1`;
     // console.log(req.params);
     let book_id = req.params.id;
@@ -123,6 +113,30 @@ function saveToDataBase(req , res){
       res.render('pages/books/details',{detailedBook: results.rows[0]}); 
     })
   }
+  app.put('/edit/:id',updateBook);
+  function updateBook(req,res){
+    console.log('we are updating');
+    let {image_url , title, author, isbn , description} = req.body
+    console.log('we are req.body',req);
+      let SQL = `UPDATE books SET title=$1,author=$2,isbn=$3,description=$4 WHERE id=$5;`;
+        let safeValue = [ title, author, isbn , description, req.params.id];
+        client.query(SQL,safeValue).then(()=>{
+          // console.log('we are in data base',req.body)
+          // console.log('/books/:id');
+          res.redirect(`/books/${req.params.id}`)
+        })   
+  }
+  app.delete('/delete/:id',updateBook);
+  function updateBook(req,res){
+    console.log('we are deleting');
+      let SQL = `DELETE from books WHERE id=$1;`;
+        let safeValue = [ req.params.id];
+        client.query(SQL,safeValue).then(()=>{
+          // console.log('we are in data base',req.body)
+          // console.log('/books/:id');
+          res.redirect(`/`)
+        })   
+  }
 function Book(element){
     this.image_url = element.volumeInfo.imageLinks.thumbnail || "https://i.imgur.com/J5LVHEL.jpg"
     this.title=element.volumeInfo.title 
@@ -131,7 +145,6 @@ function Book(element){
     element.volumeInfo.industryIdentifiers[0].identifier) ||
         "There is no isbn "
     this.description=element.volumeInfo.description || "There is no description"
-    // this.date=element.volumeInfo.publishedDate || "There is no description"
 
 }
 function errorHandler (error, req, res) {
