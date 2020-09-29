@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('header') %>
+
+<div id="divSearch">My Favorites</div>
+<div class="resultsDiv">
+    <%if (data.length === 0){%>
+        <h2>No Books In Favorite</h2>
+    <%} else{%>
+    <%data.forEach(item=>{%>
+    <div class="containAll">
+        <img src="<%=item.imageLinks%>" alt="">
+        <h2>Book Title: <%=item.title%></h2>
+        <strong>Author: <%=item.authors%></strong>
+        <p>Description: <%=item.description%></p>
+        <form action="/details/<%=item.id%>" method="get">
+            <input type="submit" value="details">
+        </form>
+    </div>
+    <%})}%>
+</div>
+</body>
+
+</html>

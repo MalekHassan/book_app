@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('header') %>
+
+    <div id="divSearch">Search By Title or Author</div>
+    <form action="/searches" method="post">
+        <input class="in" type="text" name="enter" placeholder="Enter a title or author">
+        <div class="lable">
+            <label>Title</label>
+            <input checked class="radio" type="radio" name="by" id="title" value="intitle">
+        </div>
+        <div class="lable">
+            <label>Author</label>
+            <input class="radio" type="radio" name="by" id="author" value="inauthor">
+        </div>
+        <input  class="in" id="search" type="submit" value="Search the Google Books API">
+    </form>
+</body>
+</html>
