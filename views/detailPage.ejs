@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('header') %>
+    
+    <div id="divSearch">Book Details</div>
+    <div class="resultsDiv" >
+            <div class="containAll">
+                <img src="<%=data.imageLinks%>">
+                <h2>Book Title: <%=data.title%></h2>
+                <strong>Author: <%=data.authors%></strong>
+                <p>Description: <%=data.description%></p>
+                <form action="/details/<%=data.id %>?_method=put" method="post">
+                    <input type="text" name="imageLinks" value="<%=data.imageLinks%>">
+                    <input type="text" name="title" value="<%=data.title%>">
+                    <input type="text" name="authors" value="<%=data.authors%>">
+                    <input type="text" name="description" value="<%=data.description%>">
+                <input type="submit" value="update">
+                </form>
+                <form action="/deletes/<%=data.id %>?_method=delete" method="post">
+                    <input type="submit" value="delete">
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+body{
+    background-color: rgb(202, 200, 200);
+}
+nav{
+    background-color: black;
+    color: white;
+    display: grid;
+grid-template-columns: auto auto auto auto;
+justify-items: center;
+align-items: center;
+justify-content: space-around;    
+align-content: center;    
+
+}
+a{
+    color: honeydew;
+    font-weight: bolder;
+}
+#divSearch{
+    background-color: #80808091;
+    color: white;
+/* position: fixed; */
+display: grid;
+grid-template-columns: auto;
+justify-items: center;
+align-items: center;
+justify-content: center;    
+align-content: center;    
+padding: 10px;
+}
+
+form{
+    display: grid;
+grid-template-columns: auto;
+justify-items: center;
+align-items: center;
+justify-content: center;    
+align-content: center;    
+padding: 10px;
+margin: 50px;
+column-gap: 10px;
+  row-gap: 15px;
+}
+
+.in , .lable {
+    height: 30px;
+    width: 300px;
+    padding: 10px;
+
+}
+#search{
+    background-color: black;
+    color: blanchedalmond;
+    padding: 10px;
+    height: 30px;
+    width: 300px;
+
+}
+.lable{
+    background-color:rgba(128, 128, 128, 0.664);
+    grid-template-columns: auto;
+justify-items: center;
+align-items: center;
+justify-content: center;    
+align-content: center;    
+padding: 10px;
+column-gap: 10px;
+  row-gap: 15px;
+}
+.containAll{
+    display: grid;
+    grid-template-columns: auto;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;    
+    align-content: center;    
+    padding: 10px;
+    column-gap: 10px;
+      row-gap: 15px;
+      width: 600px;
+      height: 600px;
+      overflow: auto;
+      background-color: rgba(128, 128, 128, 0.315);
+      box-shadow: 5px 10px 8px 3px #888888;
+      margin: 20px;
+
+}
+.resultsDiv{
+    display: grid;
+    grid-template-columns: auto;
+justify-items: center;
+align-items: center;
+justify-content: center;    
+align-content: center;    
+padding: 10px;
+column-gap: 10px;
+  row-gap: 15px;
+}

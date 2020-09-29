@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('header') %>
+    
+    <div id="divSearch">Search Result</div>
+    <div class="resultsDiv" >
+        <%data.forEach(item=>{%>
+            <div class="containAll">
+                <img src="<%=item.imageLinks%>" alt="">
+                <h2>Book Title: <%=item.title%></h2>
+                <strong>Author: <%=item.authors%></strong>
+                <p>Description: <%=item.description%></p>
+                <form action="/favorite" method="post">
+                    <input type="text" name="imageLinks" value="<%=item.imageLinks%>">
+                    <input type="text" name="title" value="<%=item.title%>">
+                    <input type="text" name="authors" value="<%=item.authors%>">
+                    <input type="text" name="description" value="<%=item.description%>">
+                <input type="submit" value="select this book">
+                </form>
+            </div>
+            <%})%>
+    </div>
+</body>
+</html>
