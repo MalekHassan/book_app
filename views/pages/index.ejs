@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <%- include('./template/head')-%>
+</head>
+<body>
+    <%- include('./template/header')-%>
+    <main>
+        <div>
+        <ul>
+            <%let counter = 0%>
+            <% banana.forEach(book=>{ %>
+                <%counter++%>
+                <li>
+                    <h3>Numbeer of books in database:<%- counter %> </h3>
+                </li>
+            <li><img src=<%=book.image_url%> alt="image"></li>
+            <li>
+                <h3>Title: <%=book.title%></h3>
+            </li>
+            <li>
+                <h4>Author: <%=book.author%></h4>
+            </li>
+            <form action="/books/<%=book.id%>" method="GET">
+                <input type="submit" value="View Details">
+            </form>
+            <% }) %>
+        </ul>
+        </div>
+    </main>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
+</body>
+</html>

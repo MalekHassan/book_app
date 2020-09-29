@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <%- include('../template/head')-%>
+</head>
+
+<body>
+    <%- include('../template/header')-%>
+    <main>
+        <div>
+            <ul>
+                    <li><img src=<%=detailedBook.image_url%> ></li>
+                    <li><h3>Title: <%=detailedBook.title%></h3></li>
+                    <li><h4>Author: <%=detailedBook.author%></h4></li>
+                    <li><h4> ISBN : <%=detailedBook.isbn%></h4></li>
+                    <li><p>Description: <%=detailedBook.description%></p></li>
+                    <li><strong> Published Date: <%=detailedBook.date%></strong></li>
+            </ul>
+        </div>
+            <button id='buttonUpdate'>update</button>
+            <form action="/delete/<%=detailedBook.id%>?_method=delete" method="POST">
+                <input type="submit" value="delete">
+            </form>
+            <section id="updateForm">
+            <form action="/edit/<%=detailedBook.id%>?_method=put"method="POST">
+            <input type="text" name='title'value='<%=detailedBook.title%>'> <br><br>
+            <input type="text" name='author'value='<%=detailedBook.author%>'> <br><br>
+            <input type="text" name='isbn'value='<%=detailedBook.isbn%>'> <br><br>
+            <input type="text" name='description'value='<%=detailedBook.description%>'><br><br>
+            <input type="submit" value="update">
+            </form>
+            </section>
+        </div>    
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        $('#updateForm').hide();
+        $("#buttonUpdate").click(function(){
+            $('#updateForm').toggle()
+        });
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
+</body>
+
+</html>

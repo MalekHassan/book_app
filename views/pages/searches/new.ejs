@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+
+    <%- include('../template/head')-%>
+
+<body>
+    <main>
+          <%- include('../template/header')-%>
+    <form action="/searches/show" method="POST" >
+        <fieldset>
+            <input type="text" id="search" name="stringType" placeholder="Enter a title or an author" />
+        </fieldset>
+        <fieldset>
+            <label for="title">Title</label>
+            <input type="radio" id="title" name="searchType" value="title" />
+        </fieldset>
+
+        <fieldset>
+            <label for="author">Author</label>
+            <input type="radio" id="author" name="searchType" value="author" />
+        </fieldset>
+        <input type="submit" value="Search the Google Books API" />
+    </form>
+</main>
+</body>
+</html>
